@@ -22,6 +22,25 @@ mongoose
     console.log('could not connect mongodb' , error);
 })
 
+app.post("/mentor", async (req, res) => {
+  try {
+    const mentor = new Mentor(req.body);
+    await mentor.save();
+    res.status(201).send(mentor);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+app.post("/student", async (req, res) => {
+  try {
+    const student = new Student(req.body);
+    await student.save();
+    res.status(201).send(student);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 app.post("/mentor/:mentorId/assign", async (req, res) => {
     try {
@@ -76,4 +95,16 @@ app.post("/mentor/:mentorId/assign", async (req, res) => {
 app.listen(PORT , () => {
     console.log("Server is running in" , PORT);
 })
+
+
+
+
+
+
+
+
+
+
+
+
 
